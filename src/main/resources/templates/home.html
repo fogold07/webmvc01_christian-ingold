@@ -4,7 +4,8 @@ xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/header :: taghead">
  </head>
  <!-- Contenu est remplacé par celui du fragment -->
-  <body>
+  <body class="d-flex flex-column">
     <div th:replace="fragments/menu :: tagmenu"></div>
+    <footer th:replace="fragments/footer  :: tagfooter"></footer>
   </body>
 </html>

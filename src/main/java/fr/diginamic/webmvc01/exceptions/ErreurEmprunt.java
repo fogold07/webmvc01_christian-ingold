@@ -1,5 +1,10 @@
 package fr.diginamic.webmvc01.exceptions;
 
+/**
+ * Création d'une exception fonctionnelle pour gérer les erreurs sur les Emprunts
+ * @author Christian Ingold
+ *
+ */
 public class ErreurEmprunt extends Exception {
 
 	public ErreurEmprunt() {

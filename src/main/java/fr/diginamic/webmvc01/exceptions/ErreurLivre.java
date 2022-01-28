@@ -1,5 +1,10 @@
 package fr.diginamic.webmvc01.exceptions;
 
+/**
+ * Création d'une exception fonctionnelle pour gérer les erreurs sur les Livres
+ * @author Christian Ingold
+ *
+ */
 public class ErreurLivre extends Exception {
 
 	public ErreurLivre() {

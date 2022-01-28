@@ -1,7 +1,14 @@
 @charset "ISO-8859-1";
+
+html,
 body {
-	background-color: bluegreen;
+  height: 100%;
 }
+
+#page-content {
+  flex: 1 0 auto;
+}
+
 .input-group {
     border-radius: 5px;
 }

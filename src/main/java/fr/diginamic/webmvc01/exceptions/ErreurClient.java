@@ -2,7 +2,7 @@ package fr.diginamic.webmvc01.exceptions;
 
 /**
  * Création d'une exception fonctionnelle pour gérer les erreurs sur les Clients
- * @author Christian
+ * @author Christian Ingold
  *
  */
 public class ErreurClient extends Exception {

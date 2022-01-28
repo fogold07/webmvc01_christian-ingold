@@ -21,7 +21,7 @@ import fr.diginamic.webmvc01.repository.EmpruntJpaRepository;
 import fr.diginamic.webmvc01.repository.LivreJpaRepository;
 
 /**
- * Controller de Client, API Rest Mapping api/clients.
+ * Controller de Client.
  * 
  * @author Christian Ingold
  *
@@ -42,9 +42,11 @@ public class ClientsController {
 	private String message;
 
 	/**
-	 * localhost:8090/client/clients renvoi à la page clients/liste avec la liste de
-	 * tous les clients
-	 */	
+	 * Renvoi à la page avec la liste de tous les clients.
+	 * 
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/clients")
 	public String findAll(Model model) {
 		model.addAttribute("grc", grc);		
@@ -54,19 +56,27 @@ public class ClientsController {
 		return "clients/listeClient";
 	}
 
+
 	/**
-	 * localhost:8090/client/add
-	 * 
+	 * Renvoi vers la page d'ajout d'un nouveau client.
 	 * @param model
 	 * @return
 	 */
 	@GetMapping("/add")
 	public String addT(Model model) {
 		model.addAttribute("clientForm", new Client());
-		model.addAttribute("titre", "Ajout client");
+		model.addAttribute("titre", "Ajout d'un nouveau client");
 		return "clients/addClient";
 	}
 
+	/**
+	 * Traite les données issues du formunlaire et les enregistre en BdD.
+	 * @param model
+	 * @param clientForm
+	 * @param result
+	 * @return
+	 * @throws ErreurClient
+	 */
 	@PostMapping("/add")
 	public String add(Model model, @Valid @ModelAttribute("clientForm") Client clientForm, BindingResult result) throws ErreurClient {
 		manageBindingResult(result);
@@ -76,14 +86,14 @@ public class ClientsController {
 	}
 
 	/**
-	 * suppression du client suivant l'id.
+	 * Supprime le client suivant l'id.
 	 * 
 	 * @param pid
 	 * @throws ErreurClient
 	 */
 	@GetMapping("/delete/{id}")
 	public String delete(@PathVariable("id") Integer pid) throws ErreurClient {
-		//checkClient(pid);
+
 		/**
 		 * Gérer la suppression de "façon automatique" des emprunts avec un requete JPQL
 		 */
@@ -104,6 +114,7 @@ public class ClientsController {
 
 
 	/**
+	 * Renvoi vers le formulaire de mise à jour des informations d'un client.
 	 * @param pid
 	 * @param model
 	 * @return
@@ -112,12 +123,13 @@ public class ClientsController {
 	public String updateT(@PathVariable("id") Integer pid, Model model) {
 		Client client = grc.findById(pid).get();
 		model.addAttribute("clientForm", client);
-		model.addAttribute("titre", "Update client");
+		model.addAttribute("titre", "Mise à jour des données du client");
 		return "clients/updateClient";
 
 	}
 
 	/**
+	 * Traite les données mises à jour et l'enregistre en BdD.
 	 * @param clientForm
 	 * @param result
 	 * @return

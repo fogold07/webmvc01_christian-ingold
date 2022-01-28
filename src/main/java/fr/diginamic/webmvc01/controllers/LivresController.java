@@ -19,9 +19,9 @@ import fr.diginamic.webmvc01.exceptions.ErreurLivre;
 import fr.diginamic.webmvc01.repository.LivreJpaRepository;
 
 /**
- * Controller de Client, API Rest Mapping api/livres.
+ * Controller du Livre.
  * 
- * @author Christian
+ * @author Christian Ingold
  *
  */
 @Controller
@@ -33,11 +33,10 @@ public class LivresController {
 
 	private String message;
 	
-
 	/**
-	 * localhost:8090/livre/livres
-	 * 
-	 * 
+	 * Renvoi à la page avec la liste de tous les livres.
+	 * @param model
+	 * @return
 	 */
 	@GetMapping("/livres")
 	public String findAll(Model model) {
@@ -46,23 +45,21 @@ public class LivresController {
 		return "livres/listeLivre";
 	}
 
-
+	
 	/**
-	 * api/livres/id(1)
-	 * 
-	 * @param pid
+	 * Renvoi vers la page d'ajout d'un nouveau livre.
+	 * @param model
 	 * @return
-	 * @throws ErreurLivre
 	 */
 	@GetMapping("/add")
 	public String addT(Model model) {
-		model.addAttribute("titre", "Ajout livre");
+		model.addAttribute("titre", "Ajout d'un nouveau livre");
 		model.addAttribute("livreForm", new Livre());
 		return "livres/addLivre";
 	}
 
 	/**
-	 * Post suite à la validation du formulaire.
+	 * Traite les données issues du formunlaire et les enregistre en BdD.
 	 * @param model
 	 * @param livreForm
 	 * @param result
@@ -74,9 +71,7 @@ public class LivresController {
 		manageBindingResult(result);
 		grl.save(livreForm);
 		return "redirect:/livre/livres";
-
 	}
-
 
 	/**
 	 * suppression du livre suivant l'id.
@@ -99,6 +94,7 @@ public class LivresController {
 
 
 	/**
+	 * Renvoi vers le formulaire de mise à jour des informations d'un livre.
 	 * @param pid
 	 * @param model
 	 * @return
@@ -107,12 +103,13 @@ public class LivresController {
 	public String updateT(@PathVariable("id") Integer pid, Model model) {
 		Livre livre = grl.findById(pid).get();
 		model.addAttribute("livreForm", livre);
-		model.addAttribute("titre", "Update livre");
+		model.addAttribute("titre", "Mise à jour des informations du livre");
 		return "livres/updateLivre";
 
 	}
 	
 	/**
+	 * Traite les données mises à jour et l'enregistre en BdD.
 	 * @param livreForm
 	 * @param result
 	 * @return
@@ -126,6 +123,8 @@ public class LivresController {
 	}
 	
 	/**
+	 * Méthode qui renvoie un message d'erreur si les propriétés de @Valid ne sont
+	 * pas respectées.
 	 * @param result
 	 * @throws ErreurLivre
 	 */
@@ -139,6 +138,5 @@ public class LivresController {
 			}); throw new ErreurLivre(message);
 		}
 	}
-
 
 }
