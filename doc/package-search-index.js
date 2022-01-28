@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"fr.diginamic.webmvc01"},{"l":"fr.diginamic.webmvc01.controllers"},{"l":"fr.diginamic.webmvc01.controllers.advice"},{"l":"fr.diginamic.webmvc01.entities"},{"l":"fr.diginamic.webmvc01.exceptions"},{"l":"fr.diginamic.webmvc01.repository"}];updateSearchResults();
