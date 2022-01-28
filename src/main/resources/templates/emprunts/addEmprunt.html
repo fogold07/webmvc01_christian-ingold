@@ -8,8 +8,8 @@
 </div>
 	<form th:action="@{/emprunt/add}" th:object="${empruntForm}"
 		method="post">
-		Date de début: <input type="text" th:field="*{datedebut}" /> <br />
-		Date de début: <input type="text" th:field="*{datefin}" /> <br />
+		Date de début: <input type="text" th:field="*{datedebut}" /> <br />  
+		Date de fin: <input type="text" th:field="*{datefin}" /> <br />
 		Délai: <input type="text" th:field="*{delai}" /> <br /> Choisir un
 		client: <select th:field="*{clientE}">
 			<option th:each="client : ${listeClients}" th:text=${client.nom}
