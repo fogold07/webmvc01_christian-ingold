@@ -11,9 +11,9 @@
 			<div class="form-row">
 				<div class="col-md-4 mb-3">
 					<div class="datepicker date input-group">
-						<label>Date de début</label> <input type="text"
-							placeholder="Choisir une date" class="form-control"
-							th:field="*{datedebut}">
+						<label class="form-label">Date de début</label> <input type="text"
+							placeholder="Choisir une date de début" class="form-control"
+							th:field="*{datedebut}" required />
 						<div class="input-group-append">
 							<span class="input-group-text px-4"><i
 								class="fa fa-calendar"></i></span>
@@ -23,19 +23,20 @@
 
 				<div class="col-md-4 mb-3">
 					<div class="datepicker date input-group">
-						<label>Date de fin</label> <input type="text"
-							placeholder="Choisir une date" class="form-control"
-							th:field="*{datefin}">
+						<label class="form-label">Date de fin</label> <input type="text"
+							placeholder="Choisir une date de fin" class="form-control"
+							th:field="*{datefin}" required />
 						<div class="input-group-append">
+
 							<span class="input-group-text px-4"><i
-								class="fa fa-calendar"></i></span>
+								class="far fa-calendar-alt"></i></span>
 						</div>
 					</div>
 				</div>
 
 				<div class="col-md-4 mb-3">
 					<label class="form-label">Délai</label> <input class="form-control"
-						type="text" th:field="*{delai}" />
+						type="text" th:field="*{delai}" required/>
 				</div>
 
 			</div>
@@ -43,6 +44,7 @@
 			<div class="form-row">
 				<div class="col-md-4 mb-3">
 					<label class="form-label">Choisir un client</label> <select
+						class="form-select" aria-label="Default select example"
 						th:field="*{clientE}">
 						<option th:each="client : ${listeClients}" th:text=${client.nom}
 							th:value="${client.id}" />
@@ -51,7 +53,7 @@
 				</div>
 				<div class="col-md-4 mb-3">
 					<label class="form-label">Choisir un ou plusieurs livres</label> <select
-						th:field="*{livresE}" multiple>
+						class="form-select" th:field="*{livresE}" multiple>
 						<option th:each="l : ${listeLivres}" th:text=${l.titre}
 							th:value="${l.id}" />
 					</select>
@@ -59,13 +61,13 @@
 
 			</div>
 
-			<button class="btn btn-primary" type="submit">Envoyer</button>
-			<input type="submit" value="Create" />
-
-
+			<div class="form-row">
+				<div class="col-md-4 mb-3">
+					<a class="btn btn-light" th:href="@{/emprunt/emprunts}">Retour</a>
+					<button class="btn btn-success" type="submit">Valider</button>
+				</div>
+			</div>
 		</form>
-
-		<br /> <a th:href="@{/emprunt/emprunts}">Retour</a>
 	</div>
 </body>
 

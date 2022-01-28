@@ -23,7 +23,7 @@ import fr.diginamic.webmvc01.repository.LivreJpaRepository;
 /**
  * Controller de Client, API Rest Mapping api/clients.
  * 
- * @author Christian
+ * @author Christian Ingold
  *
  */
 @Controller
@@ -44,10 +44,7 @@ public class ClientsController {
 	/**
 	 * localhost:8090/client/clients renvoi à la page clients/liste avec la liste de
 	 * tous les clients
-	 */
-	
-
-	
+	 */	
 	@GetMapping("/clients")
 	public String findAll(Model model) {
 		model.addAttribute("grc", grc);		

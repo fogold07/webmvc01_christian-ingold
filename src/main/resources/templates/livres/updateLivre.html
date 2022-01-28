@@ -4,23 +4,33 @@
 <head th:replace="fragments/header :: taghead">
 </head>
 <body>
-<div th:replace="fragments/menu :: tagmenu">
-</div>
-	<form th:action="@{/livre/update}" th:object="${livreForm}" method="post">
+	<div class="container">
+		<div th:replace="fragments/menu :: tagmenu"></div>
+		<form class="form-group" th:action="@{/livre/update}"
+			th:object="${livreForm}" method="post">
+			<div class="form-row">
+				<div class="col-md-4 mb-3">
+					<input class="form-control" type="hidden" th:field="*{id}" />
+				</div>
+				<div class="col-md-4 mb-3">
+					<label class="form-label">Auteur:</label> <input
+						class="form-control" type="text" th:field="*{auteur}" required />
+				</div>
+				<div class="col-md-4 mb-3">
+					<label class="form-label">Titre:</label> <input
+						class="form-control" type="text" th:field="*{titre}" required />
+				</div>
+			</div>
 
-	<input type="hidden" th:field="*{id}"/>
-	<br/>
-		Auteur:
-		<input type="text" th:field="*{auteur}"/>
-		<br/>
-		Titre:
-		<input type="text" th:field="*{titre}"/>
-		<br/>
-		<input type="submit" value="Update"/>
-	</form>
-	<br/>
-	<a th:href="@{/livre/livres}">Retour</a>
+			<div class="form-row">
+				<div class="col-md-4 mb-3">
+					<a class="btn btn-light" th:href="@{/livre/livres}">Retour</a>
+					<button class="btn btn-success" type="submit">Actualiser</button>
+				</div>
+			</div>
+		</form>
 
+	</div>
 </body>
 </html>
 

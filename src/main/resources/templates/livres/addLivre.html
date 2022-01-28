@@ -4,19 +4,31 @@
 <head th:replace="fragments/header :: taghead">
 </head>
 <body>
-<div th:replace="fragments/menu :: tagmenu">
-</div>
-	<form th:action="@{/livre/add}" th:object="${livreForm}" method="post">
-		Auteur:
-		<input type="text" th:field="*{auteur}"/>
-		<br/>
-		Titre:
-		<input type="text" th:field="*{titre}"/>
-		<br/>
-		<input type="submit" value="Create"/>
-	</form>
-	<br/>
-	<a th:href="@{/livre/livres}">Retour</a>
+	<div class="container">
+		<div th:replace="fragments/menu :: tagmenu"></div>
+		<form class="form-group" th:action="@{/livre/add}"
+			th:object="${livreForm}" method="post">
+			<div class="form-row">
+				<div class="col-md-4 mb-3">
+					<label class="form-label">Auteur:</label> <input
+						class="form-control" type="text" th:field="*{auteur}" required />
+				</div>
 
+				<div class="col-md-4 mb-3">
+					<label class="form-label">Titre:</label> <input
+						class="form-control" type="text" th:field="*{titre}" required />
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class="col-md-4 mb-3">
+					<a class="btn btn-light" th:href="@{/livre/livres}">Retour</a>
+					<button class="btn btn-success" type="submit">Valider</button>
+				</div>
+			</div>
+
+		</form>
+
+	</div>
 </body>
 </html>

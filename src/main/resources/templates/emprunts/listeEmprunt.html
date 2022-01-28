@@ -5,15 +5,15 @@
 </head>
 
 <body>
+<div class="container">
 <div th:replace="fragments/menu :: tagmenu">
 </div>
 
-	<a th:href="@{/emprunt/add}">Ajout</a>
+	<a class="btn btn-secondary" th:href="@{/emprunt/add}">Ajout</a>
 	<hr />
-	<table>
+	<table class="table table-hover">
 		<thead>
 			<tr>
-				<th>id</th>
 				<th>Date début</th>
 				<th>Date fin</th>
 				<th>Délai</th>
@@ -24,7 +24,6 @@
 		</thead>
 		<tbody>
 			<tr th:each="emprunt : ${emprunts}">
-				<td th:text="${emprunt.id}"></td>
 				<td th:text="${emprunt.datedebut}"></td>
 				<td th:text="${emprunt.datefin}"></td>
 				<td th:text="${emprunt.delai}"></td>
@@ -38,12 +37,13 @@
 			  		</ul>
 			  	</td>
 			  	
-				<td><a
+				<td><a class="btn btn-danger"
 					onclick="return confirm('Etes vous sûre de vouloir supprimer?')"
 					th:href="@{/emprunt/delete/{id}(id=${emprunt.id})}">Supprimer</a></td>
-				<td><a th:href="@{/emprunt/update/{id}(id=${emprunt.id})}">Update</a></td>
+				<td><a class="btn btn-warning" th:href="@{/emprunt/update/{id}(id=${emprunt.id})}">Modifier</a></td>
 			</tr>
 		</tbody>
 	</table>
+</div>
 </body>
 </html>
