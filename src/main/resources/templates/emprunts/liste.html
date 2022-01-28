@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="htpp://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title th:text="${titre}">Titre</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+</head>
+<body>
+	<h1 th:text="${titre}"></h1>
+	<br />
+	<a th:href="@{/emprunt/add}">Ajout</a>
+	<hr />
+	<table>
+		<thead>
+			<tr>
+				<th>Date début</th>
+				<th>Date fin</th>
+				<th>Délai</th>
+				<th>Nom client</th>
+				<th>Prénom client</th>
+				<!--  <th>Actions</th> -->
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="emprunt : ${emprunts}">
+				<td th:text="${emprunt.datedebut}"></td>
+				<td th:text="${emprunt.datefin}"></td>
+				<td th:text="${emprunt.delai}"></td>
+				<td th:text="${emprunt.clientE.nom}"></td>
+				<td th:text="${emprunt.clientE.prenom}"></td>
+				<td><a
+					onclick="return confirm('Etes vous sûre de vouloir supprimer?')"
+					th:href="@{/emprunt/delete/{id}(id=${emprunt.id})}">Supprimer</a></td>
+				<td><a th:href="@{/emprunt/update/{id}(id=${emprunt.id})}">Update</a></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="htpp://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title th:text="${titre}">Titre</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+</head>
+<body>
+	<h1 th:text="${titre}"></h1>
+	<br />
+	<a th:href="@{/client/add}">Ajout</a>
+	<hr />
+	<table>
+		<thead>
+			<tr>
+				<th>Nom</th>
+				<th>Prénom</th>
+				<th>Emprunts</th>
+				<!--  <th>Actions</th> -->
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="client : ${clients}">
+				<td th:text="${client.nom}"></td>
+				<td th:text="${client.prenom}"></td>
+				<td th:text="${client.emprunts}"></td>
+				<td><a
+					onclick="return confirm('Etes vous sûre de vouloir supprimer?')"
+					th:href="@{/client/delete/{id}(id=${client.id})}">Supprimer</a></td>
+				<td><a th:href="@{/client/update/{id}(id=${client.id})}">Update</a></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

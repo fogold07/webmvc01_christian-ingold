@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="htpp://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title th:text="${titre}">Titre</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+</head>
+<body>
+	<h1 th:text="${titre}"></h1>
+	<form th:action="@{/livre/add}" th:object="${livreForm}" method="post">
+		Auteur:
+		<input type="text" th:field="*{auteur}"/>
+		<br/>
+		Titre:
+		<input type="text" th:field="*{titre}"/>
+		<br/>
+		<input type="submit" value="Create"/>
+	</form>
+	<br/>
+	<a th:href="@{/livre/livres}">Retour</a>
+
+</body>
+</html>
