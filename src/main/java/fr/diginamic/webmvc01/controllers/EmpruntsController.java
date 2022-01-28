@@ -73,7 +73,8 @@ public class EmpruntsController {
 	}
 
 	@PostMapping("/add")
-	public String add(Model model, @ModelAttribute("empruntForm") Emprunt empruntForm) {
+	public String add(Model model, @Valid @ModelAttribute("empruntForm") Emprunt empruntForm, BindingResult result) throws ErreurEmprunt {
+		manageBindingResult(result);
 		gre.save(empruntForm);
 		empruntForm.getLivresE().forEach(l -> {
 			l.getEmpruntLivres().add(empruntForm);
@@ -121,8 +122,8 @@ public class EmpruntsController {
 
 
 	@PostMapping("/update")
-	public String update(@Valid @ModelAttribute("empruntForm") Emprunt empruntForm) {
-		
+	public String update(@Valid @ModelAttribute("empruntForm") Emprunt empruntForm, BindingResult result) throws ErreurEmprunt {
+		manageBindingResult(result);
 		gre.save(empruntForm);
 		empruntForm.getLivresE().forEach(l->{
 			l.getEmpruntLivres().add(empruntForm);
@@ -131,9 +132,15 @@ public class EmpruntsController {
 		return "redirect:/emprunt/emprunts";
 
 	}
-
+private String message;
 //TODO : Gestion de l'exception ErreurEmprunt dans le BindingResult
 	private void manageBindingResult(BindingResult result) throws ErreurEmprunt {
-		
+		if(result.hasErrors()) {
+			message="";
+			result.getFieldErrors().forEach(e -> {
+				message += e.getField() + " - " + e.getDefaultMessage() +" * ";
+			});
+			throw new ErreurEmprunt(message);
+		}
 	}
 }
