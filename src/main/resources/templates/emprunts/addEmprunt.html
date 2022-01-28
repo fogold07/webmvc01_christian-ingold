@@ -4,27 +4,79 @@
 <head th:replace="fragments/header :: taghead">
 </head>
 <body>
-<div th:replace="fragments/menu :: tagmenu">
-</div>
-	<form th:action="@{/emprunt/add}" th:object="${empruntForm}"
-		method="post">
-		Date de début: <input type="text" th:field="*{datedebut}" /> <br />  
-		Date de fin: <input type="text" th:field="*{datefin}" /> <br />
-		Délai: <input type="text" th:field="*{delai}" /> <br /> Choisir un
-		client: <select th:field="*{clientE}">
-			<option th:each="client : ${listeClients}" th:text=${client.nom}
-				th:value="${client.id}" />
+	<div class="container">
+		<div th:replace="fragments/menu :: tagmenu"></div>
+		<form th:action="@{/emprunt/add}" th:object="${empruntForm}"
+			method="post" class="form-group">
+			<div class="form-row">
+				<div class="col-md-4 mb-3">
+					<div class="datepicker date input-group">
+						<label>Date de début</label> <input type="text"
+							placeholder="Choisir une date" class="form-control"
+							th:field="*{datedebut}">
+						<div class="input-group-append">
+							<span class="input-group-text px-4"><i
+								class="fa fa-calendar"></i></span>
+						</div>
+					</div>
+				</div>
 
-		</select> <br /> 
-		Choisir un ou plusieurs livres:
-		<select th:field="*{livresE}"  multiple >
-			<option th:each="l : ${listeLivres}"  th:text=${l.titre} th:value="${l.id}" />
-		</select>
+				<div class="col-md-4 mb-3">
+					<div class="datepicker date input-group">
+						<label>Date de fin</label> <input type="text"
+							placeholder="Choisir une date" class="form-control"
+							th:field="*{datefin}">
+						<div class="input-group-append">
+							<span class="input-group-text px-4"><i
+								class="fa fa-calendar"></i></span>
+						</div>
+					</div>
+				</div>
 
-		<br /> <input type="submit" value="Create" />
-	</form>
-	<br />
-	<a th:href="@{/emprunt/emprunts}">Retour</a>
+				<div class="col-md-4 mb-3">
+					<label class="form-label">Délai</label> <input class="form-control"
+						type="text" th:field="*{delai}" />
+				</div>
 
+			</div>
+
+			<div class="form-row">
+				<div class="col-md-4 mb-3">
+					<label class="form-label">Choisir un client</label> <select
+						th:field="*{clientE}">
+						<option th:each="client : ${listeClients}" th:text=${client.nom}
+							th:value="${client.id}" />
+
+					</select>
+				</div>
+				<div class="col-md-4 mb-3">
+					<label class="form-label">Choisir un ou plusieurs livres</label> <select
+						th:field="*{livresE}" multiple>
+						<option th:each="l : ${listeLivres}" th:text=${l.titre}
+							th:value="${l.id}" />
+					</select>
+				</div>
+
+			</div>
+
+			<button class="btn btn-primary" type="submit">Envoyer</button>
+			<input type="submit" value="Create" />
+
+
+		</form>
+
+		<br /> <a th:href="@{/emprunt/emprunts}">Retour</a>
+	</div>
 </body>
+
+<!-- Script pour activation du datepicker -->
+<script type="text/javascript">
+	$(function() {
+		// ACTIVATION DU DATEPICKER 
+		$('.datepicker').datepicker({
+			clearBtn : true,
+			format : "yyyy-mm-dd"
+		});
+	});
+</script>
 </html>

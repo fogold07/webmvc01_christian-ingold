@@ -128,9 +128,7 @@ public class ClientsController {
 	 */
 	@PostMapping("/update")
 	public String update(@Valid @ModelAttribute("clientForm") Client clientForm, BindingResult result) throws ErreurClient {
-
 		manageBindingResult(result);
-
 		grc.save(clientForm);
 		
 		return "redirect:/client/clients";

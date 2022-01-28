@@ -13,20 +13,31 @@
 	<table>
 		<thead>
 			<tr>
+				<th>id</th>
 				<th>Date début</th>
 				<th>Date fin</th>
 				<th>Délai</th>
 				<th>Nom client</th>
 				<th>Prénom client</th>
+				<th>Livres</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr th:each="emprunt : ${emprunts}">
+				<td th:text="${emprunt.id}"></td>
 				<td th:text="${emprunt.datedebut}"></td>
 				<td th:text="${emprunt.datefin}"></td>
 				<td th:text="${emprunt.delai}"></td>
 			 	<td th:text="${emprunt.clientE.nom}"></td> 
-			  	<td th:text="${emprunt.clientE.prenom}"></td> 
+			  	<td th:text="${emprunt.clientE.prenom}"></td>
+			  	<td>
+			  		<span></span>
+			  		<ul>
+			  			<li th:each="l : ${gre.findByLivre(emprunt)}" th:text="${l.titre}"></li>
+
+			  		</ul>
+			  	</td>
+			  	
 				<td><a
 					onclick="return confirm('Etes vous sûre de vouloir supprimer?')"
 					th:href="@{/emprunt/delete/{id}(id=${emprunt.id})}">Supprimer</a></td>

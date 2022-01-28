@@ -52,6 +52,7 @@ public class EmpruntsController {
 	@GetMapping("/emprunts")
 	public String findAll(Model model) {
 		List<Emprunt> emprunts = (List<Emprunt>) gre.findAll();
+		model.addAttribute("gre", gre);
 		model.addAttribute("emprunts", emprunts);
 		model.addAttribute("titre", "Liste des emprunts");
 		return "emprunts/listeEmprunt";
