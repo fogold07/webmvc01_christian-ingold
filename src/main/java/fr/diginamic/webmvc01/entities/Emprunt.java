@@ -11,7 +11,6 @@ import javax.validation.constraints.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
 
 
-
 @Entity
 @Table(name="EMPRUNT")
 public class Emprunt {
@@ -36,28 +35,24 @@ public class Emprunt {
 	@JoinColumn(name ="ID_CLIENT")
 	private Client clientE;
 	
-	/**
-	 * AJOUT POUR TEST SUR FORM LIVRE
-	 */
 	@ManyToMany(mappedBy="empruntLivres", fetch = FetchType.EAGER)
+//	@Transient
 	private Set<Livre> livresE;
 	
-	public Emprunt() {
-		super();
-		livresE = new HashSet<Livre>();
-	}
-
-
+	
 	public Set<Livre> getLivresE() {
 		return livresE;
 	}
-
 
 
 	public void setLivresE(Set<Livre> livresE) {
 		this.livresE = livresE;
 	}
 
+
+	public Emprunt() {
+		super();
+	}
 
 
 	public int getId() {

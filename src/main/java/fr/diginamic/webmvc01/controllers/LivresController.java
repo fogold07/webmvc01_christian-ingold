@@ -43,7 +43,7 @@ public class LivresController {
 	public String findAll(Model model) {
 		model.addAttribute("titre","Liste des livres");
 		model.addAttribute("livres",(List<Livre>) grl.findAll());
-		return "livres/liste";
+		return "livres/listeLivre";
 	}
 
 
@@ -58,7 +58,7 @@ public class LivresController {
 	public String addT(Model model) {
 		model.addAttribute("titre", "Ajout livre");
 		model.addAttribute("livreForm", new Livre());
-		return "livres/add";
+		return "livres/addLivre";
 	}
 
 	/**
@@ -108,7 +108,7 @@ public class LivresController {
 		Livre livre = grl.findById(pid).get();
 		model.addAttribute("livreForm", livre);
 		model.addAttribute("titre", "Update livre");
-		return "livres/update";
+		return "livres/updateLivre";
 
 	}
 	

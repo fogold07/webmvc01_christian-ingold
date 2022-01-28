@@ -1,23 +1,27 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="htpp://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
-<head>
-<title th:text="${titre}">Titre</title>
-<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+<head th:replace="fragments/header :: taghead">
 </head>
 <body>
-	<h1 th:text="${titre}"></h1>
-	<form th:action="@{/client/add}" th:object="${clientForm}" method="post">
+<div th:replace="fragments/menu :: tagmenu">
+</div>
+	<form th:action="@{/client/update}" th:object="${clientForm}" method="post">
+
+	<input type="hidden" th:field="*{id}"/>
+	<br/>
 		Prénom:
 		<input type="text" th:field="*{prenom}"/>
 		<br/>
 		Nom:
 		<input type="text" th:field="*{nom}"/>
 		<br/>
-		<input type="submit" value="Create"/>
+		<input type="submit" value="Update"/>
 	</form>
 	<br/>
 	<a th:href="@{/client/clients}">Retour</a>
 
 </body>
 </html>
+
+

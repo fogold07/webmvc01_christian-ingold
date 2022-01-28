@@ -28,22 +28,10 @@ public class Client {
 	@NotBlank
 	private String prenom;
 	
-	/**
-	 * TEST POUR AFFICHAGE EMPRUNT DANS THYMELEAF
-	 */
 
-	@OneToMany(mappedBy = "clientE")
-	private Set<Emprunt> emprunts;
-
-	public Set<Emprunt> getEmprunts() {
-		return emprunts;
-	}
-	public void setEmprunts(Set<Emprunt> emprunts) {
-		this.emprunts = emprunts;
-	}
 	public Client() {
 		super();
-		emprunts = new HashSet<Emprunt>();
+
 	}
 	public int getId() {
 		return id;

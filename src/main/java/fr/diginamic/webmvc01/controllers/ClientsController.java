@@ -50,11 +50,11 @@ public class ClientsController {
 	
 	@GetMapping("/clients")
 	public String findAll(Model model) {
-				
+		model.addAttribute("grc", grc);		
 		model.addAttribute("clients", (List<Client>) grc.findAll());
 		model.addAttribute("titre", "Liste des clients");
 
-		return "clients/liste";
+		return "clients/listeClient";
 	}
 
 	/**
@@ -67,7 +67,7 @@ public class ClientsController {
 	public String addT(Model model) {
 		model.addAttribute("clientForm", new Client());
 		model.addAttribute("titre", "Ajout client");
-		return "clients/add";
+		return "clients/addClient";
 	}
 
 	@PostMapping("/add")
@@ -116,7 +116,7 @@ public class ClientsController {
 		Client client = grc.findById(pid).get();
 		model.addAttribute("clientForm", client);
 		model.addAttribute("titre", "Update client");
-		return "clients/update";
+		return "clients/updateClient";
 
 	}
 

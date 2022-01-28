@@ -54,7 +54,7 @@ public class EmpruntsController {
 		List<Emprunt> emprunts = (List<Emprunt>) gre.findAll();
 		model.addAttribute("emprunts", emprunts);
 		model.addAttribute("titre", "Liste des emprunts");
-		return "emprunts/liste";
+		return "emprunts/listeEmprunt";
 	}
 
 	/**
@@ -69,12 +69,16 @@ public class EmpruntsController {
 		model.addAttribute("listeClients", listeClients);
 		model.addAttribute("listeLivres", listeLivres);
 		model.addAttribute("titre", "Ajout emprunt");
-		return "emprunts/add";
+		return "emprunts/addEmprunt";
 	}
 
 	@PostMapping("/add")
 	public String add(Model model, @ModelAttribute("empruntForm") Emprunt empruntForm) {
 		gre.save(empruntForm);
+		empruntForm.getLivresE().forEach(l -> {
+			l.getEmpruntLivres().add(empruntForm);
+			grl.save(l);
+		});
 		return "redirect:/emprunt/emprunts";
 	}
 
@@ -106,19 +110,24 @@ public class EmpruntsController {
 	public String updateT(@PathVariable("id") Integer pid, Model model) {
 		Emprunt emprunt = gre.findById(pid).get();
 		List<Client> listeClients = (List<Client>) grc.findAll();
+		List<Livre> listeLivres = (List<Livre>) grl.findAll();
 		model.addAttribute("listeClients", listeClients);
+		model.addAttribute("listeLivres", listeLivres);
 		model.addAttribute("empruntForm", emprunt);
 		model.addAttribute("titre", "Update emprunt");
-		return "emprunts/update";
+		return "emprunts/updateEmprunt";
 
 	}
 
 
 	@PostMapping("/update")
 	public String update(@Valid @ModelAttribute("empruntForm") Emprunt empruntForm) {
-
-		gre.save(empruntForm);
 		
+		gre.save(empruntForm);
+		empruntForm.getLivresE().forEach(l->{
+			l.getEmpruntLivres().add(empruntForm);
+			grl.save(l);
+		});
 		return "redirect:/emprunt/emprunts";
 
 	}

@@ -1,12 +1,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="htpp://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
-<head>
-<title th:text="${titre}">Titre</title>
-<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+<head th:replace="fragments/header :: taghead">
 </head>
 <body>
-	<h1 th:text="${titre}"></h1>
+	<div th:replace="fragments/menu :: tagmenu">
+	</div>
+	
 	<form th:action="@{/emprunt/update}" th:object="${empruntForm}" method="post">
 
 	<input type="hidden" th:field="*{id}"/>
@@ -23,7 +23,11 @@
 		Choisir un client: <select th:field="*{clientE}">
 			<option th:each="client : ${listeClients}" th:text=${client.nom}
 				th:value="${client.id}" />
-				</select>
+				</select><br/>
+		Choisir un ou plusieurs livres:
+		<select th:field="*{livresE}"  multiple >
+			<option th:each="l : ${listeLivres}"  th:text=${l.titre} th:value="${l.id}" />
+		</select>
 				<br/>
 		<input type="submit" value="Update"/>
 	</form>
