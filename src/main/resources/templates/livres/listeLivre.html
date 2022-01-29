@@ -7,18 +7,20 @@
 <div class="container">
 <div th:replace="fragments/menu :: tagmenu">
 </div>
-	<a class="btn btn-secondary" th:href="@{/livre/add}">Ajout</a>
+	<a class="btn btn-secondary" th:href="@{/livre/add}" th:text="#{titre.btn.ajouter}">Ajout</a>
 	<hr />
 	<table class="table table-hover">
 		<thead>
 			<tr>
-				<th>Auteur</th>
-				<th>Titre</th>
-				<th>Date de retour</th>
+				<th>Ref.</th>
+				<th th:text="#{titre.livre.auteur}">Auteur</th>
+				<th th:text="#{titre.livre.titre}">Titre</th>
+				<th th:text="#{titre.livre.dateretour}">Date de retour</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr th:each="livre : ${livres}">
+				<td th:text="${livre.id}"></td>
 				<td th:text="${livre.auteur}"></td>
 				<td th:text="${livre.titre}"></td>
 				<td >
@@ -29,11 +31,12 @@
 						</div>
 					</ul>
 				</td>
-				<td><a class="btn btn-danger" onclick="return confirm('Etes-vous sûre de vouloir supprimer?')" th:href="@{/livre/delete/{id}(id=${livre.id})}">Supprimer</a></td>
-			<td><a class="btn btn-warning" th:href="@{/livre/update/{id}(id=${livre.id})}">Modifier</a></td>
+				<td><a class="btn btn-danger" onclick="return confirm('Etes-vous sûre de vouloir supprimer?')" th:href="@{/livre/delete/{id}(id=${livre.id})}" th:text="#{titre.btn.supprimer}">>Supprimer</a></td>
+			<td><a class="btn btn-warning" th:href="@{/livre/update/{id}(id=${livre.id})}" th:text="#{titre.btn.actualiser}">Modifier</a></td>
 			</tr>
 		</tbody>
 	</table>
 	</div>
+
 </body>
 </html>

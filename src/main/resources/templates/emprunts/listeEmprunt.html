@@ -9,21 +9,23 @@
 <div th:replace="fragments/menu :: tagmenu">
 </div>
 
-	<a class="btn btn-secondary" th:href="@{/emprunt/add}">Ajout</a>
+	<a class="btn btn-secondary" th:href="@{/emprunt/add}" th:text="#{titre.btn.ajouter}">Ajout</a>
 	<hr />
 	<table class="table table-hover">
 		<thead>
 			<tr>
-				<th>Date début</th>
-				<th>Date fin</th>
-				<th>Délai</th>
-				<th>Nom client</th>
-				<th>Prénom client</th>
-				<th>Livres</th>
+				<th>Ref.</th>
+				<th th:text="#{titre.emprunt.datedebut}">Date début</th>
+				<th th:text="#{titre.emprunt.datefin}">Date fin</th>
+				<th th:text="#{titre.emprunt.delai}">Délai</th>
+				<th th:text="#{titre.emprunt.nom}">Nom client</th>
+				<th th:text="#{titre.emprunt.prenom}">Prénom client</th>
+				<th th:text="#{titre.emprunt.livres}">Livres</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr th:each="emprunt : ${emprunts}">
+				<td th:text="${emprunt.id}"></td>
 				<td th:text="${emprunt.datedebut}"></td>
 				<td th:text="${emprunt.datefin}"></td>
 				<td th:text="${emprunt.delai}"></td>
@@ -37,13 +39,14 @@
 			  		</ul>
 			  	</td>
 			  	
-				<td><a class="btn btn-danger"
+				<td><a th:text="#{titre.btn.supprimer}" class="btn btn-danger"
 					onclick="return confirm('Etes vous sûre de vouloir supprimer?')"
 					th:href="@{/emprunt/delete/{id}(id=${emprunt.id})}">Supprimer</a></td>
-				<td><a class="btn btn-warning" th:href="@{/emprunt/update/{id}(id=${emprunt.id})}">Modifier</a></td>
+				<td><a th:text="#{titre.btn.actualiser}" class="btn btn-warning" th:href="@{/emprunt/update/{id}(id=${emprunt.id})}">Modifier</a></td>
 			</tr>
 		</tbody>
 	</table>
 </div>
+
 </body>
 </html>

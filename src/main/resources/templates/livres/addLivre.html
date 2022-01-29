@@ -10,25 +10,24 @@
 			th:object="${livreForm}" method="post">
 			<div class="form-row">
 				<div class="col-md-4 mb-3">
-					<label class="form-label">Auteur:</label> <input
+					<label class="form-label" th:text="#{titre.livre.auteur}">Auteur:</label> <input
 						class="form-control" type="text" th:field="*{auteur}" required />
 				</div>
 
 				<div class="col-md-4 mb-3">
-					<label class="form-label">Titre:</label> <input
+					<label class="form-label" th:text="#{titre.livre.titre}">Titre:</label> <input
 						class="form-control" type="text" th:field="*{titre}" required />
 				</div>
 			</div>
 
 			<div class="form-row">
 				<div class="col-md-4 mb-3">
-					<a class="btn btn-light" th:href="@{/livre/livres}">Retour</a>
-					<button class="btn btn-success" type="submit">Valider</button>
+					<a class="btn btn-light" th:href="@{/livre/livres}" th:text="#{titre.btn.retour}">Retour</a>
+					<button class="btn btn-success" type="submit" th:text="#{titre.btn.valider}">Valider</button>
 				</div>
 			</div>
-
 		</form>
-
 	</div>
+
 </body>
 </html>

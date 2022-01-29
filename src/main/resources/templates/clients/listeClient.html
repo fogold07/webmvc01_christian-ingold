@@ -9,18 +9,20 @@
 <div th:replace="fragments/menu :: tagmenu">
 </div>
 
-	<a class="btn btn-secondary" th:href="@{/client/add}">Ajout</a>
+	<a class="btn btn-secondary" th:href="@{/client/add}" th:text="#{titre.btn.ajouter}">Ajout</a>
 	<hr />
 	<table class="table table-hover">
 		<thead>
 			<tr>
-				<th>Nom</th>
-				<th>Prénom</th>
-				<th>Livres empruntés</th>
+				<th>Ref.</th>
+				<th th:text="#{titre.client.nom}">Nom</th>
+				<th th:text="#{titre.client.prenom}">Prénom</th>
+				<th th:text="#{titre.client.livres}">Livres empruntés</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr th:each="client : ${clients}">
+				<td th:text="${client.id}"></td>
 				<td th:text="${client.nom}"></td>
 				<td th:text="${client.prenom}"></td>
 				<td>
@@ -33,12 +35,12 @@
 				</td>
 				<td><a class="btn btn-danger"
 					onclick="return confirm('Etes-vous sûre de vouloir supprimer?')"
-					th:href="@{/client/delete/{id}(id=${client.id})}">Supprimer</a></td>
-				<td><a class="btn btn-warning" th:href="@{/client/update/{id}(id=${client.id})}">Actualiser</a></td>
+					th:href="@{/client/delete/{id}(id=${client.id})}" th:text="#{titre.btn.supprimer}">Supprimer</a></td>
+				<td><a class="btn btn-warning" th:href="@{/client/update/{id}(id=${client.id})}" th:text="#{titre.btn.actualiser}">Actualiser</a></td>
 			</tr>
 		</tbody>
 	</table>
 </div>
-    <footer th:replace="fragments/footer  :: tagfooter"></footer>
+
 </body>
 </html>

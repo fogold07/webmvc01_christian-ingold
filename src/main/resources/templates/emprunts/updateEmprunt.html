@@ -14,41 +14,41 @@
 				<div class="col-md-3 mb-3">
 					<input class="form-control" type="hidden" th:field="*{id}" />
 				</div>
-				<div class="col-md-4 mb-3">
-					<div class="datepicker date input-group">
-						<label class="form-label">Date de début</label> <input type="text"
-							placeholder="Choisir une date de début" class="form-control"
-							th:field="*{datedebut}">
-						<div class="input-group-append">
-							<span class="input-group-text px-4"><i
-								class="fa fa-calendar"></i></span>
-						</div>
+				
+				<label class="form-label" th:text="#{titre.emprunt.datedebut}">Date de début</label>
+				<div class="col-sm-4">
+					<div class="input-group date datepicker">
+						<input type="text" placeholder="Choisir une date de début" class="form-control" th:field="*{datedebut}" required />
+						<span class="input-group-append">
+							<span class="input-group-text bg-white">
+								<i class="bi bi-calendar"></i>
+							</span>						
+						</span>
+					</div>
+				</div>
+				
+				<label class="form-label" th:text="#{titre.emprunt.datefin}">Date de fin</label>
+				<div class="col-sm-4">
+					<div class="input-group date datepicker">
+						<input type="text" placeholder="Choisir une date de fin" class="form-control" th:field="*{datefin}" required />
+						<span class="input-group-append">
+							<span class="input-group-text bg-white">
+								<i class="bi bi-calendar"></i>
+							</span>						
+						</span>
 					</div>
 				</div>
 
 				<div class="col-md-4 mb-3">
-					<div class="datepicker date input-group">
-						<label class="form-label">Date de fin</label> <input type="text"
-							placeholder="Choisir une date de fin" class="form-control"
-							th:field="*{datefin}">
-						<div class="input-group-append">
-
-							<span class="input-group-text px-4"><i
-								class="far fa-calendar-alt"></i></span>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-md-4 mb-3">
-					<label class="form-label">Délai</label> <input class="form-control"
-						type="text" th:field="*{delai}" />
+					<label class="form-label" th:text="#{titre.emprunt.delai}">Délai</label> <input class="form-control"
+						type="text" th:field="*{delai}" required/>
 				</div>
 
 			</div>
 
 			<div class="form-row">
 				<div class="col-md-4 mb-3">
-					<label class="form-label">Choisir un client</label> <select
+					<label class="form-label" th:text="#{titre.emprunt.client}">Choisir un client</label> <select
 						class="form-select" aria-label="Default select example"
 						th:field="*{clientE}">
 						<option th:each="client : ${listeClients}" th:text=${client.nom}
@@ -57,7 +57,7 @@
 					</select>
 				</div>
 				<div class="col-md-4 mb-3">
-					<label class="form-label">Choisir un ou plusieurs livres</label> <select
+					<label class="form-label" th:text="#{titre.emprunt.choix.livres}">Choisir un ou plusieurs livres</label> <select
 						class="form-select" th:field="*{livresE}" multiple>
 						<option th:each="l : ${listeLivres}" th:text=${l.titre}
 							th:value="${l.id}" />
@@ -68,8 +68,8 @@
 
 			<div class="form-row">
 				<div class="col-md-4 mb-3">
-					<a class="btn btn-light" th:href="@{/emprunt/emprunts}">Retour</a>
-					<button class="btn btn-success" type="submit">Actualiser</button>
+					<a class="btn btn-light" th:href="@{/emprunt/emprunts}" th:text="#{titre.btn.retour}">Retour</a>
+					<button class="btn btn-success" type="submit" th:text="#{titre.btn.valider}">Actualiser</button>
 				</div>
 			</div>
 		</form>
