@@ -6,6 +6,7 @@
 <body>
 	<div class="container">
 		<div th:replace="fragments/menu :: tagmenu"></div>
+
 		<form th:action="@{/emprunt/add}" th:object="${empruntForm}"
 			method="post" class="form-group">
 
@@ -68,6 +69,7 @@
 				</div>
 			</div>
 		</form>
+
 	</div>
 
 </body>

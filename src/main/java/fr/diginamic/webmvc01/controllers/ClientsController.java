@@ -51,6 +51,7 @@ public class ClientsController {
 	public String findAll(Model model) {
 		model.addAttribute("grc", grc);		
 		model.addAttribute("clients", (List<Client>) grc.findAll());
+		model.addAttribute("emprunts", gre);
 		model.addAttribute("titre", "Liste des clients");
 
 		return "clients/listeClient";

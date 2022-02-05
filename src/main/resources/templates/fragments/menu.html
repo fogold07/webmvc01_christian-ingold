@@ -1,11 +1,19 @@
-<div th:fragment="tagmenu">
-    <h2 th:text="#{hello.world}"></h2>
-    <h1 th:text="${titre}">HOME</h1>
-    <a class="btn btn-primary" th:href="@{/client/clients}" th:text="#{titre.gestion.client}">Gestion des Clients</a>
-    <a class="btn btn-primary" th:href="@{/livre/livres}" th:text="#{titre.gestion.livre}">Gestion des Livres</a>
-    <a class="btn btn-primary" th:href="@{/emprunt/emprunts}" th:text="#{titre.gestion.emprunt}">Gestion des Emprunts</a>
-    <br/>
-    <hr/>
-</div>
+<!-- PAS SATISFAISANT -->
 
-<!-- menu.html dans le dossier templates/fragments -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light" th:fragment="tagmenu">
+  <div class="container-fluid">
+  <span class="navbar-text" th:text="#{hello.world}">Hello world</span>
+  <h1 class="text-center" th:text="${titre}">HOME</h1>
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/client/clients}" th:text="#{titre.gestion.client}">Gestion des Clients</a>
+      </li>
+     <li class="nav-item">
+        <a class="nav-link" th:href="@{/livre/livres}" th:text="#{titre.gestion.livre}">Gestion des Livres</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/emprunt/emprunts}" th:text="#{titre.gestion.emprunt}">Gestion des Emprunts</a>
+      </li>
+    </ul>
+  </div>
+</nav>
